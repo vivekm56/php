@@ -1,0 +1,40 @@
+<?php
+$servername = "localhost";
+$username = "userName";
+$password = "password";
+$db = "databaseName";
+
+$conn = new mysqli($servername, $username, $password, $db);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+echo "connection established";   //connect to database.
+$file = "fileName.txt";
+ $file_handle = fopen($file, "r");
+    while(!feof($file_handle)){
+        $content = fgets($file_handle);
+        $carray = preg_split("/[,\t]/", $content); //apply comma seprated and tab seprated togrther.
+        $t = array();
+        $l = sizeof($carray);
+        echo $l;
+        for( $i = 0; $i < 15; $i++){
+            if($i < $l){
+                array_push($t, $carray[$i]);
+            }else{
+                array_push($t, " ");
+            }
+        }
+        
+        list($variable1,$variable2,,,,,,)= $t; //define variables in list
+      
+        $sql = "INSERT INTO `tableName` (`fiel1dName(columnName)`,'field2Name',,,,) values ('$variable1','$variable2',,,,,,)";
+    
+        echo $sql; 
+
+         $conn->query($sql);
+        
+
+    }
+fclose($file_handle);
+echo "Done!";
+?>  
