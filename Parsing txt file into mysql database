@@ -13,7 +13,8 @@ $file = "fileName.txt";
  $file_handle = fopen($file, "r");
     while(!feof($file_handle)){
         $content = fgets($file_handle);
-        $carray = preg_split("/[,\t]/", $content); //apply comma seprated and tab seprated togrther.
+        $carray = explode(",", $content);
+        $carray = explode("\t", $content); //apply comma seprated and tab seprated .
         $t = array();
         $l = sizeof($carray);
         echo $l;
